@@ -1,0 +1,6 @@
+name: Pack MC
+version: '${project.version}'
+main: me.iantapply.PackMC
+api-version: 1.19
+authors: [ IanTapply ]
+description: A 1.19+ plugin that hosts resource packs on the server that's hosting your Minecraft server. No need for dropbox!
