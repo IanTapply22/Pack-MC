@@ -29,7 +29,7 @@ public final class PackMC extends JavaPlugin {
     public static File customConfigFile;
 
 
-    private PackMC() {
+    public PackMC() {
         this.requestHandler = new BasicRequestHandler();
     }
 
@@ -40,6 +40,7 @@ public final class PackMC extends JavaPlugin {
         try {
             start(getConfig().getInt("host-port"));
         } catch (Exception e) {
+            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Cannot start resource pack server due to an error!");
             throw new RuntimeException(e);
         }
 
@@ -59,7 +60,7 @@ public final class PackMC extends JavaPlugin {
         server.start();
     }
 
-    private void handle(HttpExchange exchange, File output) throws IOException {
+    public void handle(HttpExchange exchange, File output) throws IOException {
         List<String> lines = FileUtils.readFile(output);
         String response = "";
         for (String line : lines)

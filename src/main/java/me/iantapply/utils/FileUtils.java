@@ -10,7 +10,8 @@ import java.util.List;
 public class FileUtils {
 
     // the folder inside the base server folder which contains website files
-    private static final File PACK_FOLDER = new File(PackMC.getCustomConfig().getString("resource-pack-folder"));
+    public static final File PACK_FOLDER = new File(PackMC.getCustomConfig().getString("resource-pack-folder"));
+
 
     // if the file does not exist, create it
     public static File createFileIfNecessary(File file) {
@@ -38,6 +39,7 @@ public class FileUtils {
         return folder;
     }
 
+
     public static List<String> readFile(File file) throws IOException {
         return Files.readAllLines(file.toPath());
     }
@@ -49,6 +51,7 @@ public class FileUtils {
     public static File getWebsite404() {
         return createFileIfNecessary(new File(getPackFolder(), "404.html"));
     }
+
     // always assumes index.html
     public static File getWebsitePage(String request) {
         if (request.endsWith("/")) // ends with folder directory
