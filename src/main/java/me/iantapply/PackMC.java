@@ -5,6 +5,7 @@ import com.sun.net.httpserver.HttpServer;
 import lombok.Getter;
 import me.iantapply.handlers.BasicRequestHandler;
 import me.iantapply.handlers.RequestHandler;
+import me.iantapply.handlers.UploadResourcePackHandler;
 import me.iantapply.handlers.WebRequestHandler;
 import me.iantapply.utils.ConfigurationUtils;
 import me.iantapply.utils.FileUtils;
@@ -56,6 +57,7 @@ public final class PackMC extends JavaPlugin {
     public void start(int port) throws Exception {
         HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
         server.createContext("/", new RequestHandler());
+        server.createContext("/upload-resource-pack/", new UploadResourcePackHandler());
         server.setExecutor(null); // creates a default executor
         server.start();
     }
