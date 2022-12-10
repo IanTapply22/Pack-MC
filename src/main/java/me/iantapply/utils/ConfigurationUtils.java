@@ -7,26 +7,25 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 import java.io.IOException;
 
-import static me.iantapply.PackMC.customConfigFile;
+import static me.iantapply.PackMC.configFile;
 
 public class ConfigurationUtils {
 
-    public static void createCustomConfig() {
-        customConfigFile = new File(PackMC.getPlugin(PackMC.class).getDataFolder(), "config.yml");
-        if (!customConfigFile.exists()) {
-            customConfigFile.getParentFile().mkdirs();
+    /**
+     * Creates the config file with the contents of the one in the resource folder
+     */
+    public static void createConfig() {
+        configFile = new File(PackMC.getPlugin(PackMC.class).getDataFolder(), "config.yml");
+        if (!configFile.exists()) {
+            configFile.getParentFile().mkdirs();
             PackMC.getPlugin(PackMC.class).saveResource("config.yml", false);
         }
 
-        PackMC.customConfig = new YamlConfiguration();
+        PackMC.configuration = new YamlConfiguration();
         try {
-            PackMC.customConfig.load(customConfigFile);
+            PackMC.configuration.load(configFile);
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
         }
-        /* User Edit:
-            Instead of the above Try/Catch, you can also use
-            YamlConfiguration.loadConfiguration(customConfigFile)
-        */
     }
 }

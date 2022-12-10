@@ -13,8 +13,9 @@ public class BasicRequestHandler implements WebRequestHandler {
         File page = FileUtils.getWebsitePage(request);
         List<String> lines = FileUtils.readFile(page);
         String response = "";
-        for (String line : lines)
+        for (String line : lines) {
             response += line;
+        }
         return response;
     }
 }
