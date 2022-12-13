@@ -63,7 +63,7 @@ public class ExtractingUtils {
      * @return the hexHash (hexadecimal name)
      * @throws IOException
      */
-    public static String extractToLocation(byte[] fileContent) throws IOException {
+    public static String putFileInDirectory(byte[] fileContent) throws IOException {
         MessageDigest sha256 = null;
         try {
             sha256 = MessageDigest.getInstance("SHA-256");
@@ -107,6 +107,21 @@ public class ExtractingUtils {
             } catch (IOException var5) {
                 return "This ZIP file ended unexpectedly";
             }
+        }
+    }
+
+    public static byte[] getFileFromDirectory(String hexHash) {
+        File file = new File(PACK_FOLDER + "/" + hexHash + ".zip");
+
+        if (!file.exists()) {
+            return null;
+        }
+
+        try {
+            return Files.readAllBytes(file.toPath());
+        } catch (IOException ioTrouble) {
+            file.delete();
+            return null;
         }
     }
 }

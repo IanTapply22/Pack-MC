@@ -57,7 +57,7 @@ public class UploadResourcePackHandler implements HttpHandler {
                             // Try..
                             try {
                                 // Extract the final zip file to the location
-                                String hexHash = ExtractingUtils.extractToLocation(fileContent);
+                                String hexHash = ExtractingUtils.putFileInDirectory(fileContent);
 
                                 // Print debug to console
                                 System.out.println("Received POST request with file and uploaded it to directory.");

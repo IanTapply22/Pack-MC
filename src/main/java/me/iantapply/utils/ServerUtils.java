@@ -2,6 +2,7 @@ package me.iantapply.utils;
 
 import com.sun.net.httpserver.HttpServer;
 import me.iantapply.handlers.RequestHandler;
+import me.iantapply.handlers.uploading.GetResourcePackHandler;
 import me.iantapply.handlers.uploading.UploadResourcePackHandler;
 
 import java.net.InetSocketAddress;
@@ -17,6 +18,7 @@ public class ServerUtils {
         // Create URI paths
         server.createContext("/", new RequestHandler());
         server.createContext("/upload-resource-pack/", new UploadResourcePackHandler());
+        server.createContext(GetResourcePackHandler.GET_RESOURCE_PACK_PREFIX, new GetResourcePackHandler());
         server.setExecutor(null);
 
         // Start it

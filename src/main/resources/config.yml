@@ -1,4 +1,5 @@
 ## Configuration file! ##
+debug: false
 
 host-port: 3000
-resource-pack-folder: packs
+resource-pack-folder: plugins/PackMC/packs

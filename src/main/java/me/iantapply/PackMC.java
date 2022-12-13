@@ -4,6 +4,7 @@ import com.sun.net.httpserver.HttpExchange;
 import lombok.Getter;
 import me.iantapply.handlers.BasicRequestHandler;
 import me.iantapply.handlers.WebRequestHandler;
+import me.iantapply.listeners.SendResourcePackOnJoinListener;
 import me.iantapply.utils.ConfigurationUtils;
 import me.iantapply.utils.FileUtils;
 import me.iantapply.utils.ServerUtils;
