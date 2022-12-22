@@ -1,4 +1,4 @@
-package me.iantapply.utils;
+package me.iantapply.files;
 
 import me.iantapply.PackMC;
 
@@ -6,12 +6,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
-import java.util.Objects;
 
 public class FileUtils {
-
-    // The folder that contains all the uploaded resource packs
-    public static final File PACK_FOLDER = new File(Objects.requireNonNull(PackMC.getConfiguration().getString("resource-pack-folder")));
 
     /**
      * Copy all html files and folders to the plugin data folder
@@ -21,6 +17,17 @@ public class FileUtils {
         if (!new File("plugins/PackMC/webpages").exists() && !new File("plugins/PackMC/webpages").mkdirs()) {
             new File("plugins/PackMC/webpages");
         }
+
+        // Create "uploaded-packs" folder
+        if (!new File("plugins/PackMC/uploaded-packs").exists() && !new File("plugins/PackMC/uploaded-packs").mkdirs()) {
+            new File("plugins/PackMC/uploaded-packs");
+        }
+
+        // Create "active-packs" folder
+        if (!new File("plugins/PackMC/active-packs").exists() && !new File("plugins/PackMC/active-packs").mkdirs()) {
+            new File("plugins/PackMC/active-packs");
+        }
+
 
         // Create html files
         if (!new File("plugins/PackMC/webpages", "webpages/index.html").exists()) {
@@ -32,10 +39,8 @@ public class FileUtils {
         if (!new File("plugins/PackMC/webpages", "webpages/unsuccessful-upload.html").exists()) {
             PackMC.getPlugin(PackMC.class).saveResource("webpages/unsuccessful-upload.html", false);
         }
-
-        // Create "packs" folder
-        if (!new File("plugins/PackMC/packs").exists() && !new File("plugins/PackMC/packs").mkdirs()) {
-            new File("plugins/PackMC/packs");
+        if (!new File("plugins/PackMC/webpages", "webpages/404.html").exists()) {
+            PackMC.getPlugin(PackMC.class).saveResource("webpages/404.html", false);
         }
     }
 
@@ -49,9 +54,12 @@ public class FileUtils {
         return Files.readAllLines(file.toPath());
     }
 
-    // FIX THIS
+    /**
+     * Gets the 404 webpage
+     * @return the 404 webpage file
+     */
     public static File getWebsite404() {
-        return new File(PACK_FOLDER, "404.html");
+        return new File("plugins/PackMc/webpages", "404.html");
     }
 
     /**

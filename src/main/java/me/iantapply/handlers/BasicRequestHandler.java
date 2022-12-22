@@ -1,7 +1,7 @@
 package me.iantapply.handlers;
 
 import com.sun.net.httpserver.HttpExchange;
-import me.iantapply.utils.FileUtils;
+import me.iantapply.files.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
