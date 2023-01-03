@@ -1,5 +1,11 @@
 ## Configuration file! ##
 debug: false
+enabled: true
 
 host-port: 3000
-resource-pack-folder: plugins/PackMC/packs
+host-hostname: localhost
+
+uploaded-resource-pack-folder: plugins/PackMC/uploaded-packs
+active-resource-pack-folder: plugins/PackMC/active-packs
+
+## DO NOT TOUCH THESE OPTIONS IF YOU DON'T KNOW WHAT YOU'RE DOING ##

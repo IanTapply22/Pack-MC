@@ -1,6 +1,9 @@
 name: PackMC
-version: '1.3.1'
+version: '1.4.0'
 main: me.iantapply.PackMC
 api-version: 1.19
 authors: [ IanTapply ]
 description: A 1.19+ plugin that hosts resource packs on the server that's hosting your Minecraft server. No need for dropbox!
+commands:
+  packmc:
+    description: Change the resource pack per world or the whole server.

@@ -2,7 +2,7 @@ package me.iantapply.handlers.uploading;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import me.iantapply.utils.ExtractingUtils;
+import me.iantapply.files.ExtractingUtils;
 import me.iantapply.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -12,9 +12,6 @@ import java.io.IOException;
 import java.util.List;
 
 public class UploadResourcePackHandler implements HttpHandler {
-
-    // The file size limit (100MB)
-    private int FILE_SIZE_LIMIT = 100 * 1024 * 1024;
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
@@ -47,7 +44,9 @@ public class UploadResourcePackHandler implements HttpHandler {
                     // Validate the content
                     String fileError = ExtractingUtils.validateResourcePackContent(fileContent);
 
-                    // If the size is less than the limit then...
+                    // If the size is less than the limit then...///////
+                    // The file size limit (100MB)
+                    int FILE_SIZE_LIMIT = 100 * 1024 * 1024;
                     if (contentLength <= FILE_SIZE_LIMIT) {
                         // Set valid content length as true
                         hasValidContentLength = true;

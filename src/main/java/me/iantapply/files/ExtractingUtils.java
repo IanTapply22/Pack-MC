@@ -1,6 +1,7 @@
-package me.iantapply.utils;
+package me.iantapply.files;
 
 import me.iantapply.PackMC;
+import me.iantapply.utils.Utils;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -17,7 +18,7 @@ import java.util.zip.ZipInputStream;
 public class ExtractingUtils {
 
     // The folder that contains all the uploaded resource packs
-    public static final File PACK_FOLDER = new File(Objects.requireNonNull(PackMC.getConfiguration().getString("resource-pack-folder")));
+    public static final File UPLOADED_PACK_FOLDER = new File(Objects.requireNonNull(PackMC.getConfiguration().getString("uploaded-resource-pack-folder")));
 
     /**
      * Extracts file content from the content and headers
@@ -75,7 +76,7 @@ public class ExtractingUtils {
         byte[] rawHash = sha256.digest();
         String hexHash = Utils.binarytoHexadecimal(rawHash);
 
-        File file = new File(PACK_FOLDER + "/" + hexHash + ".zip");
+        File file = new File(UPLOADED_PACK_FOLDER + "/" + hexHash + ".zip");
         if (!file.exists()) {
             Files.write(file.toPath(), fileContent);
         }
@@ -110,8 +111,13 @@ public class ExtractingUtils {
         }
     }
 
+    /**
+     * Gets a file with a hex hash from the uploaded directory
+     * @param hexHash hex hash to find
+     * @return byte array for that file
+     */
     public static byte[] getFileFromDirectory(String hexHash) {
-        File file = new File(PACK_FOLDER + "/" + hexHash + ".zip");
+        File file = new File(UPLOADED_PACK_FOLDER + "/" + hexHash + ".zip");
 
         if (!file.exists()) {
             return null;

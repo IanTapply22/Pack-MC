@@ -11,6 +11,11 @@ public class ServerUtils {
 
     public static HttpServer server;
 
+    /**
+     * Starts the file upload web server
+     * @param port port to start it on
+     * @throws Exception
+     */
     public static void startWebServer(int port) throws Exception {
         // Create a java HttpServer instance
         server = HttpServer.create(new InetSocketAddress(port), 0);
@@ -25,6 +30,9 @@ public class ServerUtils {
         server.start();
     }
 
+    /**
+     * Stops the file upload web server
+     */
     public static void stopWebServer() {
         // Stop the server with a delay of 1
         server.stop(1);

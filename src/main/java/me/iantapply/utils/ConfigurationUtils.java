@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 
 import static me.iantapply.PackMC.configFile;
+import static me.iantapply.PackMC.worldDataFile;
 
 public class ConfigurationUtils {
 
@@ -24,6 +25,24 @@ public class ConfigurationUtils {
         PackMC.configuration = new YamlConfiguration();
         try {
             PackMC.configuration.load(configFile);
+        } catch (IOException | InvalidConfigurationException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Creates a world data file to store resource pack ID data
+     */
+    public static void createWorldDataConfig() {
+        worldDataFile = new File(PackMC.getPlugin(PackMC.class).getDataFolder(), "world-data.yml");
+        if (!worldDataFile.exists()) {
+            worldDataFile.getParentFile().mkdirs();
+            PackMC.getPlugin(PackMC.class).saveResource("world-data.yml", false);
+        }
+
+        PackMC.worldData = new YamlConfiguration();
+        try {
+            PackMC.worldData.load(worldDataFile);
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
         }
